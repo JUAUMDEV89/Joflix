@@ -1,11 +1,12 @@
-* {
+
+ * {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
   }
   
   :root {
-    --primary: #cec2cc;
-    --black: #50087a;
+    --primary: #a5bbd8;
+    --black: #a21dc4;
     --blackLighter: #9E9E9E;
     --grayLight: #F5F5F5;
     --grayMedium: #e5e5e5; 
@@ -23,3 +24,10 @@
   a {
     color: inherit;
   } 
+
+  :root{
+      min-height: calc(100vh - 96px);
+      display:flex;
+      flex-direction: column;
+  }
+    
