@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import PageDefault from '../../../pageDefault';
 
 import { Link } from 'react-router-dom';
@@ -27,6 +27,17 @@ function CadastroCategoria(){
         setValue(e.target.getAttribute('name'),
                  e.target.value);
     }
+
+    useEffect(()=>{
+        const URL = 'http://localhost:3001/categorias';
+        fetch(URL)
+        .then(async (respostaDoServidor)=>{
+            const resposta = await respostaDoServidor.json();
+            setCategorias([
+                ...resposta,
+            ])
+        })
+    })
 
     return(
         <PageDefault>

@@ -6,12 +6,14 @@ export const Form = styled.form`
 
    input, textArea{
        width:100%;
-       height:40px;
+       height:50px;
        border:none;
        border-radius:10px;
        margin-top:20px;
        padding-left:10px;
+       padding-top:2px;      
    }
+
 
    button{
        margin-top:20px;
