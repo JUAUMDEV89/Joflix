@@ -4,12 +4,13 @@ export const Form = styled.form`
    display:flex;
    flex-direction:column;
 
-   input{
+   input, textArea{
        width:100%;
        height:40px;
        border:none;
        border-radius:10px;
        margin-top:20px;
+       padding-left:10px;
    }
 
    button{
@@ -21,4 +22,15 @@ export const Form = styled.form`
        border-radius:10px;
        cursor:pointer;
    }
-`; 
+
+   div{
+       display:flex;
+       flex-direction:column;
+
+   }
+
+   label{
+       margin-top:10px;
+   }
+
+`;
