@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Main = styled.div`
    background-color:black;
@@ -8,4 +8,7 @@ export const Main = styled.div`
    padding-right:5%;
    padding-left:5%;
    min-height:calc(100vh - 94px);
+   ${({ paddingAll }) => css`
+     padding:${ paddingAll }
+   ` }
 `;

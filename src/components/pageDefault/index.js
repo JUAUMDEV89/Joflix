@@ -4,11 +4,11 @@ import Footer from '../Footer';
 
 import { Main } from "./style";
 
-function PageDefault({ children }){
+function PageDefault({ children, paddingAll }){
     return(
         <>
         <Menu />
-          <Main>
+          <Main paddingAll={paddingAll}>
             {children}
           </Main>
         <Footer />

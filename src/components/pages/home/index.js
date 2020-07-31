@@ -1,31 +1,63 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Menu from '../../Menu';
 
-import dados_iniciais from '../../../data/dados_iniciais.json';
+//import dados_iniciais from '../../../data/dados_iniciais.json';
 
 import BannerMain from '../../BannerMain';
 import Carousel from '../../Carousel';
 import Footer from '../../Footer';
-
+import PageDefault from '../../pageDefault';
 import '../../../style/style.css';
+import categoriasRepository from  '../../../repositories/categoria';
 
 function App() {
+  
+  const [dadosIniciais, setDadosIniciais] = useState([])
+
+  useEffect(()=>{
+      categoriasRepository.getAllWithVideos()
+       .then((categoriasComVideos)=>{
+         console.log(categoriasComVideos);
+        setDadosIniciais(categoriasComVideos);
+        console.log(categoriasComVideos);
+       })
+       .catch((err)=>{
+         console.log(err.message);
+       })
+
+  }, [])
+
   return (
-    <>
-      <Menu />
+    <PageDefault paddingAll={0}>
+  
+      {dadosIniciais.length === 0 && (<div>Loading...</div>)}
 
-      <BannerMain
-        videoTitle={dados_iniciais.categorias[0].videos[0].titulo}
-        url={dados_iniciais.categorias[0].videos[0].url}
-        video_description={"Video Super Intuitivo"}
-      />
+      {dadosIniciais.map((categoria, indice) => {
+        if (indice === 0) {
+          return (
+            <div key={categoria.id}>
+              <BannerMain
+                videoTitle={dadosIniciais[0].videos[0].titulo}
+                url={dadosIniciais[0].videos[0].url}
+                videoDescription={dadosIniciais[0].videos[0].description}
+              />
+              <Carousel
+                ignoreFirstVideo
+                category={dadosIniciais[0]}
+              />
+            </div>
+          );
+        }
 
-      <Carousel 
-        ingnoreFirstVideo
-        category={dados_iniciais.categorias[0]}
-      />
+        return (
+          <Carousel
+            key={categoria.id}
+            category={categoria}
+          />
+        );
+      })}
 
-      <Carousel 
+      {/*<Carousel 
         category={dados_iniciais.categorias[1]}
       />
 
@@ -40,11 +72,10 @@ function App() {
       <Carousel 
         category={dados_iniciais.categorias[4]}
       />
+      */}
 
-      <Footer />
-
-    </>
-  );
+    </PageDefault>
+  )
 }
 
 export default App;
